@@ -1,9 +1,9 @@
-package com.example.forutec.Comentario.Application;
+package com.example.forutec.Notificacion.Applicaction;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/Comentarios")
-public class ComentarioController {
+@RequestMapping("/notificacion")
+public class NotificacionController {
 }

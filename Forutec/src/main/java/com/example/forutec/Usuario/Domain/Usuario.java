@@ -1,6 +1,7 @@
 package com.example.forutec.Usuario.Domain;
 
 import com.example.forutec.Comentario.Domain.Comentario;
+import com.example.forutec.Notificacion.Domain.Notificacion;
 import com.example.forutec.Publicacion.Domain.Publicacion;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,4 +31,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comentario> comentarios = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notificacion> notificaciones;
 }
