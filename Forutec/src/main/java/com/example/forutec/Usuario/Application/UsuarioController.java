@@ -1,7 +1,12 @@
 package com.example.forutec.Usuario.Application;
 
+import com.example.forutec.Usuario.DTO.UsuarioDto;
+import com.example.forutec.Usuario.Domain.Usuario;
 import com.example.forutec.Usuario.Domain.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,5 +16,10 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+
+    @GetMapping("{id}")
+    public ResponseEntity<UsuarioDto> getUsuarioDTO(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioService.getUsuarioDto(id));
+    }
 
 }

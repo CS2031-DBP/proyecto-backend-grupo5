@@ -21,6 +21,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nombre;
     private String correo;
     private String RolUniversitario; //estudiante,profesor etc??
@@ -29,9 +30,9 @@ public class Usuario {
     @OneToMany(mappedBy = "author") // un usuario puede tener varias publicaciones, se escribe al reves
     private List<Publicacion> publicaciones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true) //comentarios
     private List<Comentario> comentarios = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true) //notificaciones
     private List<Notificacion> notificaciones;
 }
