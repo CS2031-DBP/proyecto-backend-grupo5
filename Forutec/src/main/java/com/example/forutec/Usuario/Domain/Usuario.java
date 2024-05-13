@@ -12,6 +12,13 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.ZonedDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -21,11 +28,26 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(name = "nombre", nullable = false)
     private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "correo", nullable = false)
     private String correo;
-    private String RolUniversitario; //estudiante,profesor etc??
-    private ZonedDateTime FechaCreacionPerfil;
+
+    @Column(name = "rol_universitario")
+    private String rolUniversitario;
+
+    @Column(name = "fecha_creacion_perfil")
+    private ZonedDateTime fechaCreacionPerfil;
+
+    @Column(name = "celular")
+    private String celular;
+}
+
 
     @OneToMany(mappedBy = "author") // un usuario puede tener varias publicaciones, se escribe al reves
     private List<Publicacion> publicaciones = new ArrayList<>();

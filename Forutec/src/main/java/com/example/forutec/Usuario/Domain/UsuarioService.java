@@ -11,6 +11,50 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+import com.example.forutec.Usuario.Domain.Usuario;
+import com.example.forutec.Usuario.Repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UsuarioService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public Usuario guardarUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    public Usuario obtenerPorId(Long id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
+
+    public Usuario actualizarUsuario(Long id, Usuario usuario) {
+        if (usuarioRepository.existsById(id)) {
+            usuario.setId(id);
+            return usuarioRepository.save(usuario);
+        }
+        return null;
+    }
+
+    public boolean eliminarUsuario(Long id) {
+        if (usuarioRepository.existsById(id)) {
+            usuarioRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+/*
 @Service
 public class UsuarioService {
     @Autowired
@@ -38,3 +82,4 @@ public class UsuarioService {
 
 
 }
+ */
