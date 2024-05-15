@@ -1,11 +1,13 @@
 package com.example.forutec2.Publicacion.Domain;
 
+import com.example.forutec2.Exception.ResourceNotFoundException;
 import com.example.forutec2.Publicacion.Infraestructure.PublicacionRepository;
 import com.example.forutec2.Usuario.Domain.Usuario;
 import com.example.forutec2.Usuario.Infraestructure.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 @Service
 public class PublicacionService {
@@ -17,7 +19,7 @@ public class PublicacionService {
 
     public Publicacion guardarPublicacion(Publicacion publicacion, Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
         publicacion.setUsuario(usuario);
         return publicacionRepository.save(publicacion);
     }
@@ -37,7 +39,4 @@ public class PublicacionService {
         publicacionRepository.deleteById(id);
     }
 
-
-
-
-}
+   }
