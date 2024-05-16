@@ -3,6 +3,7 @@ package com.example.forutec2.Comentario.Domain;
 import com.example.forutec2.Publicacion.Domain.Publicacion;
 import com.example.forutec2.Usuario.Domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,12 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comentario;
-    private ZonedDateTime FechaPublicacion;
 
+    private ZonedDateTime FechaPublicacion;
+    @PrePersist
+    public void prePersist() {
+        this.FechaPublicacion = ZonedDateTime.now();
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Publicacion_id", nullable = false)
